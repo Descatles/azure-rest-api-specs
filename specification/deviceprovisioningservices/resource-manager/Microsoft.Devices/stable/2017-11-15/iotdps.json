@@ -1359,6 +1359,11 @@
         "certificate": {
           "description": "Base-64 representation of the X509 leaf certificate .cer file or just .pem file content.",
           "type": "string"
+        },
+        "accountId": {
+          "description": "unique id of certain account.",
+          "readOnly": true,
+          "type": "string"
         }
       }
     },
