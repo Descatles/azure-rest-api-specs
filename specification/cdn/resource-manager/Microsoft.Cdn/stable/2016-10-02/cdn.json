@@ -156,7 +156,7 @@
             "$ref": "#/parameters/resourceGroupNameParameter"
           },
           {
-            "name": "profileName",
+            "name": "tprofileName",
             "in": "path",
             "description": "Name of the CDN profile which is unique within the resource group.",
             "required": true,
