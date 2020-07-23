@@ -705,7 +705,7 @@
         "properties": {
           "$ref": "#/definitions/SqlServerRegistrationProperties",
           "description": "Resource properties.",
-          "x-ms-client-flatten": true
+          "x-ms-client-flatten": false
         }
       }
     },

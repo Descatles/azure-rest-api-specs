@@ -1874,7 +1874,7 @@
           }
         },
         "properties": {
-          "x-ms-client-flatten": true,
+          "x-ms-client-flatten": false,
           "$ref": "#/definitions/EndpointPropertiesCreateParameters"
         }
       },
