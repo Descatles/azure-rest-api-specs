@@ -188,6 +188,11 @@
           "description": "Properties for Assignment object.",
           "x-ms-client-flatten": true,
           "$ref": "#/definitions/AssignmentProperties"
+        },
+        "primaryKey": {
+          "description": "value of primary key.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "required": [
