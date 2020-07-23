@@ -389,7 +389,7 @@
       "type": "object",
       "properties": {
         "properties": {
-          "x-ms-client-flatten": true,
+          "x-ms-client-flatten": false,
           "description": "Property bag.",
           "$ref": "./common.json#/definitions/MixedRealityAccountProperties"
         }
