@@ -731,6 +731,11 @@
                 "$ref": "#/definitions/CustomRPValidations"
               }
             },
+            "primaryKey": {
+              "description": "value of primary key.",
+              "readOnly": true,
+              "type": "string"
+            },
             "provisioningState": {
               "type": "string",
               "description": "The provisioning state of the resource provider.",
