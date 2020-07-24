@@ -649,6 +649,11 @@
           "description": "Properties of the Front Door Load Balancer",
           "x-ms-client-flatten": true,
           "$ref": "#/definitions/FrontDoorProperties"
+        },
+        "accountId": {
+          "description": "unique id of certain account.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "allOf": [
