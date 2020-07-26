@@ -355,7 +355,7 @@
       "description": "Domain service.",
       "properties": {
         "properties": {
-          "x-ms-client-flatten": true,
+          "x-ms-client-flatten": false,
           "$ref": "#/definitions/DomainServiceProperties",
           "description": "Domain service properties"
         }
