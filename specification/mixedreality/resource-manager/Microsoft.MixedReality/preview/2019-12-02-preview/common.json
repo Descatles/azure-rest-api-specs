@@ -139,7 +139,7 @@
     "resourceGroupNameParameter": {
       "name": "resourceGroupName",
       "in": "path",
-      "required": true,
+      "required": false,
       "type": "string",
       "pattern": "^[-\\w\\._\\(\\)]+$",
       "minLength": 1,
