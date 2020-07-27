@@ -2082,20 +2082,6 @@
           "description": "The value of the https port. Must be between 1 and 65535.",
           "type": "integer"
         },
-        "resourceState": {
-          "description": "Resource status of the origin.",
-          "readOnly": true,
-          "enum": [
-            "Creating",
-            "Active",
-            "Deleting"
-          ],
-          "type": "string",
-          "x-ms-enum": {
-            "name": "OriginResourceState",
-            "modelAsString": false
-          }
-        },
         "provisioningState": {
           "description": "Provisioning status of the origin.",
           "$ref": "#/definitions/ProvisioningState"
