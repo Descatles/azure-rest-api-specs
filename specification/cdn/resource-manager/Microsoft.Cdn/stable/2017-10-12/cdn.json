@@ -1653,11 +1653,8 @@
         "description": "Enable https delivery of the custom domain.",
         "operationId": "CustomDomains_EnableCustomHttps",
         "x-ms-examples": {
-          "CustomDomains_EnableCustomHttpsUsingYourOwnCertificate": {
-            "$ref": "./examples/CustomDomains_EnableCustomHttpsUsingBYOC.json"
-          },
-          "CustomDomains_EnableCustomHttpsUsingCDNManagedCertificate": {
-            "$ref": "./examples/CustomDomains_EnableCustomHttpsUsingCDNManagedCertificate.json"
+          "CustomDomains_EnableCustomHttps": {
+            "$ref": "./examples/CustomDomains_EnableCustomHttps.json"
           }
         },
         "parameters": [
@@ -1684,15 +1681,6 @@
             "description": "Name of the custom domain within an endpoint.",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "customDomainHttpsParameters",
-            "in": "body",
-            "description": "The configuration specifying how to enable HTTPS for the custom domain - using CDN managed certificate or user's own certificate. If not specified, enabling ssl uses CDN managed certificate by default.",
-            "required": false,
-            "schema": {
-              "$ref": "#/definitions/CustomDomainHttpsParameters"
-            }
           },
           {
             "$ref": "#/parameters/subscriptionIdParameter"
@@ -1741,51 +1729,6 @@
             "schema": {
               "$ref": "#/definitions/CheckNameAvailabilityInput"
             }
-          },
-          {
-            "$ref": "#/parameters/apiVersionParameter"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK. The request has succeeded.",
-            "schema": {
-              "$ref": "#/definitions/CheckNameAvailabilityOutput"
-            }
-          },
-          "default": {
-            "description": "CDN error response describing why the operation failed.",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Cdn/checkNameAvailability": {
-      "post": {
-        "tags": [
-          "CheckNameAvailabilityWithSubscription"
-        ],
-        "description": "Check the availability of a resource name. This is needed for resources where name is globally unique, such as a CDN endpoint.",
-        "operationId": "CheckNameAvailabilityWithSubscription",
-        "x-ms-examples": {
-          "CheckNameAvailabilityWithSubscription": {
-            "$ref": "./examples/CheckNameAvailabilityWithSubscription.json"
-          }
-        },
-        "parameters": [
-          {
-            "name": "checkNameAvailabilityInput",
-            "in": "body",
-            "description": "Input to check.",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/CheckNameAvailabilityInput"
-            }
-          },
-          {
-            "$ref": "#/parameters/subscriptionIdParameter"
           },
           {
             "$ref": "#/parameters/apiVersionParameter"
@@ -2213,228 +2156,6 @@
           "items": {
             "$ref": "#/definitions/GeoFilter"
           }
-        },
-        "deliveryPolicy": {
-          "description": "A policy that specifies the delivery rules to be used for an endpoint.",
-          "type": "object",
-          "required": [
-            "rules"
-          ],
-          "properties": {
-            "description": {
-              "description": "User-friendly description of the policy.",
-              "type": "string"
-            },
-            "rules": {
-              "description": "A list of the delivery rules.",
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/DeliveryRule"
-              }
-            }
-          }
-        }
-      }
-    },
-    "DeliveryRule": {
-      "description": "A rule that specifies a set of actions and conditions",
-      "type": "object",
-      "required": [
-        "order",
-        "actions"
-      ],
-      "properties": {
-        "order": {
-          "description": "The order in which the rules are applied for the endpoint. Possible values {0,1,2,3,………}. A rule with a lesser order will be applied before a rule with a greater order. Rule with order 0 is a special rule. It does not require any condition and actions listed in it will always be applied.",
-          "type": "integer"
-        },
-        "actions": {
-          "description": "A list of actions that are executed when all the conditions of a rule are satisfied.",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/DeliveryRuleAction"
-          }
-        },
-        "conditions": {
-          "description": "A list of conditions that must be matched for the actions to be executed",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/DeliveryRuleCondition"
-          }
-        }
-      }
-    },
-    "DeliveryRuleCondition": {
-      "description": "A condition for the delivery rule.",
-      "discriminator": "name",
-      "required": [
-        "name"
-      ],
-      "properties": {
-        "name": {
-          "description": "The name of the condition for the delivery rule.",
-          "type": "string",
-          "enum": [
-            "UrlPath",
-            "UrlFileExtension"
-          ]
-        }
-      }
-    },
-    "DeliveryRuleUrlPathCondition": {
-      "description": "Defines the URL path condition for the delivery rule.",
-      "x-ms-discriminator-value": "UrlPath",
-      "allOf": [
-        {
-          "$ref": "#/definitions/DeliveryRuleCondition"
-        }
-      ],
-      "required": [
-        "parameters"
-      ],
-      "properties": {
-        "parameters": {
-          "description": "Defines the parameters for the condition.",
-          "$ref": "#/definitions/UrlPathConditionParameters"
-        }
-      }
-    },
-    "UrlPathConditionParameters": {
-      "description": "Defines the parameters for the URL path condition.",
-      "required": [
-        "path",
-        "matchType",
-        "@odata.type"
-      ],
-      "properties": {
-        "@odata.type": {
-          "type": "string",
-          "enum": [
-            "Microsoft.Azure.Cdn.Models.DeliveryRuleUrlPathConditionParameters"
-          ]
-        },
-        "path": {
-          "description": "A URL path for the condition of the delivery rule",
-          "type": "string"
-        },
-        "matchType": {
-          "description": "The match type for the condition of the delivery rule",
-          "type": "string",
-          "enum": [
-            "Literal",
-            "Wildcard"
-          ]
-        }
-      }
-    },
-    "DeliveryRuleUrlFileExtensionCondition": {
-      "description": "Defines the URL file extension condition for the delivery rule.",
-      "x-ms-discriminator-value": "UrlFileExtension",
-      "allOf": [
-        {
-          "$ref": "#/definitions/DeliveryRuleCondition"
-        }
-      ],
-      "required": [
-        "parameters"
-      ],
-      "properties": {
-        "parameters": {
-          "description": "Defines the parameters for the condition.",
-          "$ref": "#/definitions/UrlFileExtensionConditionParameters"
-        }
-      }
-    },
-    "UrlFileExtensionConditionParameters": {
-      "description": "Defines the parameters for the URL file extension condition.",
-      "required": [
-        "extensions",
-        "@odata.type"
-      ],
-      "properties": {
-        "@odata.type": {
-          "type": "string",
-          "enum": [
-            "Microsoft.Azure.Cdn.Models.DeliveryRuleUrlFileExtensionConditionParameters"
-          ]
-        },
-        "extensions": {
-          "description": "A list of extensions for the condition of the delivery rule.",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "DeliveryRuleAction": {
-      "description": "An action for the delivery rule.",
-      "discriminator": "name",
-      "required": [
-        "name"
-      ],
-      "properties": {
-        "name": {
-          "description": "The name of the action for the delivery rule.",
-          "type": "string",
-          "enum": [
-            "CacheExpiration"
-          ]
-        }
-      }
-    },
-    "DeliveryRuleCacheExpirationAction": {
-      "description": "Defines the cache expiration action for the delivery rule.",
-      "x-ms-discriminator-value": "CacheExpiration",
-      "allOf": [
-        {
-          "$ref": "#/definitions/DeliveryRuleAction"
-        }
-      ],
-      "required": [
-        "parameters"
-      ],
-      "properties": {
-        "parameters": {
-          "description": "Defines the parameters for the action.",
-          "$ref": "#/definitions/CacheExpirationActionParameters"
-        }
-      }
-    },
-    "CacheExpirationActionParameters": {
-      "description": "Defines the parameters for the cache expiration action.",
-      "required": [
-        "cacheBehavior",
-        "cacheType",
-        "@odata.type"
-      ],
-      "properties": {
-        "@odata.type": {
-          "type": "string",
-          "enum": [
-            "Microsoft.Azure.Cdn.Models.DeliveryRuleCacheExpirationActionParameters"
-          ]
-        },
-        "cacheBehavior": {
-          "description": "Caching behavior for the requests that include query strings.",
-          "type": "string",
-          "enum": [
-            "BypassCache",
-            "Override",
-            "SetIfMissing"
-          ]
-        },
-        "cacheType": {
-          "description": "The level at which the content needs to be cached.",
-          "type": "string",
-          "enum": [
-            "All"
-          ]
-        },
-        "cacheDuration": {
-          "description": "The duration for which the content needs to be cached. Allowed format is [d.]hh:mm:ss",
-          "type": "string",
-          "x-nullable": true
         }
       }
     },
@@ -2776,166 +2497,6 @@
         }
       }
     },
-    "CustomDomainHttpsParameters": {
-      "description": "The JSON object that contains the properties to secure a custom domain.",
-      "discriminator": "certificateSource",
-      "required": [
-        "certificateSource",
-        "protocolType"
-      ],
-      "properties": {
-        "certificateSource": {
-          "description": "Defines the source of the SSL certificate.",
-          "enum": [
-            "AzureKeyVault",
-            "Cdn"
-          ],
-          "type": "string",
-          "x-ms-enum": {
-            "name": "CertificateSource",
-            "modelAsString": true
-          }
-        },
-        "protocolType": {
-          "description": "Defines the TLS extension protocol that is used for secure delivery.",
-          "enum": [
-            "ServerNameIndication",
-            "IPBased"
-          ],
-          "type": "string",
-          "x-ms-enum": {
-            "name": "ProtocolType",
-            "modelAsString": true
-          }
-        }
-      }
-    },
-    "CdnManagedHttpsParameters": {
-      "description": "Defines the certificate source parameters using CDN managed certificate for enabling SSL.",
-      "x-ms-discriminator-value": "Cdn",
-      "allOf": [
-        {
-          "$ref": "#/definitions/CustomDomainHttpsParameters"
-        }
-      ],
-      "required": [
-        "certificateSourceParameters"
-      ],
-      "properties": {
-        "certificateSourceParameters": {
-          "description": "Defines the certificate source parameters using CDN managed certificate for enabling SSL.",
-          "$ref": "#/definitions/CdnCertificateSourceParameters"
-        }
-      }
-    },
-    "CdnCertificateSourceParameters": {
-      "description": "Defines the parameters for using CDN managed certificate for securing custom domain.",
-      "required": [
-        "@odata.type",
-        "certificateType"
-      ],
-      "properties": {
-        "@odata.type": {
-          "type": "string",
-          "enum": [
-            "#Microsoft.Azure.Cdn.Models.CdnCertificateSourceParameters"
-          ]
-        },
-        "certificateType": {
-          "description": "Type of certificate used",
-          "enum": [
-            "Shared",
-            "Dedicated"
-          ],
-          "type": "string",
-          "x-ms-enum": {
-            "name": "CertificateType",
-            "modelAsString": true
-          }
-        }
-      }
-    },
-    "UserManagedHttpsParameters": {
-      "description": "Defines the certificate source parameters using user's keyvault certificate for enabling SSL.",
-      "x-ms-discriminator-value": "AzureKeyVault",
-      "allOf": [
-        {
-          "$ref": "#/definitions/CustomDomainHttpsParameters"
-        }
-      ],
-      "required": [
-        "certificateSourceParameters"
-      ],
-      "properties": {
-        "certificateSourceParameters": {
-          "description": "Defines the certificate source parameters using user's keyvault certificate for enabling SSL.",
-          "$ref": "#/definitions/KeyVaultCertificateSourceParameters"
-        }
-      }
-    },
-    "KeyVaultCertificateSourceParameters": {
-      "description": "Describes the parameters for using a user's KeyVault certificate for securing custom domain.",
-      "required": [
-        "@odata.type",
-        "subscriptionId",
-        "resourceGroupName",
-        "vaultName",
-        "secretName",
-        "secretVersion",
-        "updateRule",
-        "deleteRule"
-      ],
-      "properties": {
-        "@odata.type": {
-          "type": "string",
-          "enum": [
-            "#Microsoft.Azure.Cdn.Models.KeyVaultCertificateSourceParameters"
-          ]
-        },
-        "subscriptionId": {
-          "description": "Subscription Id of the user's Key Vault containing the SSL certificate",
-          "type": "string"
-        },
-        "resourceGroupName": {
-          "description": "Resource group of the user's Key Vault containing the SSL certificate",
-          "type": "string"
-        },
-        "vaultName": {
-          "description": "The name of the user's Key Vault containing the SSL certificate",
-          "type": "string"
-        },
-        "secretName": {
-          "description": "The name of Key Vault Secret (representing the full certificate PFX) in Key Vault.",
-          "type": "string"
-        },
-        "secretVersion": {
-          "description": "The version(GUID) of Key Vault Secret in Key Vault.",
-          "type": "string"
-        },
-        "updateRule": {
-          "description": "Describes the action that shall be taken when the certificate is updated in Key Vault.",
-          "type": "string",
-          "enum": [
-            "NoAction"
-          ],
-          "x-ms-enum": {
-            "name": "UpdateRule",
-            "modelAsString": true
-          }
-        },
-        "deleteRule": {
-          "description": "Describes the action that shall be taken when the certificate is removed from Key Vault.",
-          "type": "string",
-          "enum": [
-            "NoAction"
-          ],
-          "x-ms-enum": {
-            "name": "DeleteRule",
-            "modelAsString": true
-          }
-        }
-      }
-    },
     "CustomDomainListResult": {
       "description": "Result of the request to list custom domains. It contains a list of custom domain objects and a URL link to get the next set of results.",
       "properties": {
@@ -3238,7 +2799,7 @@
       "type": "object",
       "properties": {
         "baseIpAddress": {
-          "description": "Ip address itself.",
+          "description": "IP address itself.",
           "type": "string"
         },
         "prefixLength": {
@@ -3329,9 +2890,7 @@
             "Premium_Verizon",
             "Custom_Verizon",
             "Standard_Akamai",
-            "Standard_ChinaCdn",
-            "Premium_ChinaCdn",
-            "Standard_Microsoft"
+            "Standard_ChinaCdn"
           ],
           "type": "string",
           "x-ms-enum": {
