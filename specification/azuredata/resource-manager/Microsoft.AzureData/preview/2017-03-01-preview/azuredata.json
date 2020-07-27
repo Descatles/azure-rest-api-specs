@@ -102,7 +102,7 @@
             "$ref": "#/parameters/ResourceGroupParameter"
           },
           {
-            "name": "sqlServerRegistrationName",
+            "name": "tsqlServerRegistrationName",
             "in": "path",
             "description": "Name of the SQL Server registration.",
             "required": true,
