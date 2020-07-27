@@ -661,7 +661,7 @@
     "FrontDoorUpdateParameters": {
       "description": "The properties needed to update a Front Door",
       "properties": {
-        "friendlyName": {
+        "friendName": {
           "description": "A friendly name for the frontDoor",
           "type": "string"
         },

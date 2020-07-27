@@ -188,11 +188,17 @@
           "description": "Properties for Assignment object.",
           "x-ms-client-flatten": true,
           "$ref": "#/definitions/AssignmentProperties"
+        },
+        "primaryKey": {
+          "description": "value of primary key.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "required": [
         "identity",
-        "properties"
+        "properties",
+        "primaryKey"
       ],
       "allOf": [
         {
@@ -211,7 +217,7 @@
             "$ref": "#/definitions/Assignment"
           }
         },
-        "nextLink": {
+        "Link": {
           "type": "string",
           "readOnly": true,
           "description": "Link to the next page of results."
