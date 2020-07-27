@@ -19,11 +19,6 @@
       "integrationRepository": "AzureSDKAutomation/azure-sdk-for-net",
       "mainRepository": "Azure/azure-sdk-for-net"
     },
-    "azure-sdk-for-python": {
-      "integrationRepository": "AzureSDKAutomation/azure-sdk-for-python",
-      "mainRepository": "Azure/azure-sdk-for-python",
-      "mainBranch": "release/v3"
-    },
     "azure-sdk-for-python-track2": {
       "integrationRepository": "AzureSDKAutomation/azure-sdk-for-python",
       "mainRepository": "Azure/azure-sdk-for-python"
