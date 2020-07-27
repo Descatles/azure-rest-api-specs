@@ -39,7 +39,7 @@
         "tags": [
           "Assignment"
         ],
-        "operationId": "Assignments_CreateOrUpdate",
+        "Id": "Assignments_CreateOrUpdate",
         "description": "Create or update a Blueprint assignment.",
         "x-ms-examples": {
           "Assignment": {
