@@ -180,7 +180,7 @@
       "type": "object",
       "description": "Represents a Blueprint assignment.",
       "properties": {
-        "identity": {
+        "idy": {
           "description": "Managed Service Identity for this Blueprint assignment",
           "$ref": "#/definitions/ManagedServiceIdentity"
         },
