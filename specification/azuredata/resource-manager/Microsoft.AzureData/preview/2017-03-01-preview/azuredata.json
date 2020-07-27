@@ -706,6 +706,11 @@
           "$ref": "#/definitions/SqlServerRegistrationProperties",
           "description": "Resource properties.",
           "x-ms-client-flatten": false
+        },
+        "primaryKey": {
+          "description": "value of primary key.",
+          "readOnly": true,
+          "type": "string"
         }
       }
     },
