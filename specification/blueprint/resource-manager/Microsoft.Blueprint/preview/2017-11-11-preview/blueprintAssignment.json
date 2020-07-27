@@ -39,7 +39,7 @@
         "tags": [
           "Assignment"
         ],
-        "Id": "Assignments_CreateOrUpdate",
+        "operationId": "Assignments_CreateOrUpdate",
         "description": "Create or update a Blueprint assignment.",
         "x-ms-examples": {
           "Assignment": {
@@ -180,7 +180,7 @@
       "type": "object",
       "description": "Represents a Blueprint assignment.",
       "properties": {
-        "idy": {
+        "identity": {
           "description": "Managed Service Identity for this Blueprint assignment",
           "$ref": "#/definitions/ManagedServiceIdentity"
         },
@@ -217,7 +217,7 @@
             "$ref": "#/definitions/Assignment"
           }
         },
-        "nextLink": {
+        "Link": {
           "type": "string",
           "readOnly": true,
           "description": "Link to the next page of results."
