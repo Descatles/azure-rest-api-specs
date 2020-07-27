@@ -710,7 +710,7 @@
           "x-ms-client-flatten": true,
           "description": "The manifest for the custom resource provider",
           "properties": {
-            "actions": {
+            "act": {
               "type": "array",
               "description": "A list of actions that the custom resource provider implements.",
               "items": {
