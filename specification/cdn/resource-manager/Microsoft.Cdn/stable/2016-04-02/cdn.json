@@ -725,13 +725,6 @@
             "type": "string"
           },
           {
-            "name": "profileName",
-            "in": "path",
-            "description": "Name of the CDN profile within the resource group.",
-            "required": true,
-            "type": "string"
-          },
-          {
             "name": "resourceGroupName",
             "in": "path",
             "description": "Name of the resource group within the Azure subscription.",
