@@ -24,7 +24,7 @@
       }
     },
     "AccountKeyRegenerateRequest": {
-      "description": "Request for account key regeneration",
+      "description": "Request for account key rgeneration",
       "type": "object",
       "properties": {
         "serial": {
