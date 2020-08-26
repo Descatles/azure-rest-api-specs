@@ -624,7 +624,7 @@
           "description": "The GUID of the suppression.",
           "type": "string"
         },
-        "ttl": {
+        "ttel": {
           "description": "The duration for which the suppression is valid.",
           "type": "string"
         }
